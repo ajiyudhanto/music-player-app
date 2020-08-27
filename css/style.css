@@ -1,0 +1,32 @@
+html { 
+    background: url("loginBg.png") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+ 
+
+#container {
+    position: relative;
+}
+
+form {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: 270px;
+    margin-top: 450px;
+}
+
+.textbox {
+    width: 200px;
+    height: 40px;
+}
+
+.loginBar {
+    width: 500px;
+    margin-top: 150px;
+    margin-left: 120px;
+}
+
