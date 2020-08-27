@@ -22,6 +22,9 @@ class MusicsController {
         .then(data => {
             res.send(data)
         })
+        .catch(err => {
+            res.send(err)
+        })
     }
 }
 

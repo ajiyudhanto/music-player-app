@@ -15,11 +15,40 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   User.init({
-    name: DataTypes.STRING,
-    username: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING
+    name: {
+      type:DataTypes.STRING,
+      notEmpty: {
+        msg: 'nama tidak boleh kosong'
+      }
+    },
+    username: {
+      type:DataTypes.STRING,
+      notEmpty: {
+        msg: 'username tidak boleh kosong'
+      }
+    },
+    email: {
+      type:DataTypes.STRING,
+      notEmpty: {
+        msg: 'email tidak boleh kosong'
+      }
+    },
+    password: {
+      type:DataTypes.STRING,
+      notEmpty: {
+        msg: 'password tidak boleh kosong'
+      }
+    }
   }, {
+    hooks: {
+      beforeCreate (user, options) {
+        user.name = user.name.split(' ')
+        for (let i = 0; i < user.name.length; i++) {
+          user.name[i][0] = user.name[i][0].toUpperCase()
+        }
+        user.name = user.name.join(' ')
+      }
+    },
     sequelize,
     modelName: 'User',
   });

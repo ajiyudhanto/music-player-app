@@ -16,7 +16,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Playlist.init({
-    name: DataTypes.STRING,
+    name: {
+      type:DataTypes.STRING,
+      notEmpty: {
+        msg: 'nama playlist tidak boleh kosong'
+      }
+    },
     UserId: DataTypes.INTEGER
   }, {
     sequelize,
