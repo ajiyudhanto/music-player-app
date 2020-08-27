@@ -17,34 +17,48 @@ module.exports = (sequelize, DataTypes) => {
   User.init({
     name: {
       type:DataTypes.STRING,
-      notEmpty: {
-        msg: 'nama tidak boleh kosong'
-      }
+      validate: {
+        notEmpty: {
+          msg: 'nama tidak boleh kosong'
+        }
+      } 
     },
     username: {
       type:DataTypes.STRING,
-      notEmpty: {
-        msg: 'username tidak boleh kosong'
+      validate: {
+        notEmpty: {
+          msg: 'username tidak boleh kosong'
+        }
       }
     },
     email: {
       type:DataTypes.STRING,
-      notEmpty: {
-        msg: 'email tidak boleh kosong'
+      validate: {
+        notEmpty: {
+          msg: 'email tidak boleh kosong'
+        }
       }
     },
     password: {
       type:DataTypes.STRING,
-      notEmpty: {
-        msg: 'password tidak boleh kosong'
+      validate: {
+        notEmpty: {
+          msg: 'password tidak boleh kosong'
+        }
       }
     }
   }, {
     hooks: {
-      beforeCreate (user, options) {
+      beforeCreate: (user, options) => {
         user.name = user.name.split(' ')
         for (let i = 0; i < user.name.length; i++) {
+          user.name[i] = user.name[i].split('')
+        }
+        for (let i = 0; i < user.name.length; i++) {
           user.name[i][0] = user.name[i][0].toUpperCase()
+        }
+        for (let i = 0; i < user.name.length; i++) {
+          user.name[i] = user.name[i].join('')
         }
         user.name = user.name.join(' ')
       }

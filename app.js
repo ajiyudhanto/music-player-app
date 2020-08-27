@@ -5,7 +5,6 @@ const port = 3000
 const homeRouter = require('./routers/homeRouter')
 const musicsRouter = require('./routers/musicsRouter')
 const playlistsRouter = require('./routers/playlistsRouter')
-const usersRouter = require('./routers/usersRouter')
 
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({extended:true}))
@@ -28,7 +27,6 @@ app.use(myLogger)
 app.use('/', homeRouter)
 app.use('/playlists', playlistsRouter)
 app.use('/musics', musicsRouter)
-app.use('/users', usersRouter)
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)

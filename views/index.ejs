@@ -3,9 +3,36 @@
         <link rel="stylesheet" href="css/styleMain.css">
     </head>
     <body>
+        <div class="title">
+        <a style="font-size: 25px">Welcome  </a><a style="font-size: 40px;"><%= userData.name %></a>
+        </div>
+        <div class="buttons">
+        <a href="/playlists/list"><img src="img/buttonAdd.png"></a> <a href="command"><img src="img/Switch.png"></a>
+        </div>
+        <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Song</th>
+                        <th>Singer</th>
+                    </tr>
+                </thead>
+                <tBody>
+                    <% for (let i = 0; i < allMusic.length; i++) { %>
+                        <tr>
+                            <td><a href="/home/<%= allMusic[i].id %>"><%= allMusic[i].judul %></a></td>
+                            <td><%= allMusic[i].penyanyi %></td>
+                        </tr>
+                    <% } %>
+                </tBody>
+            </table>
+        </div>
+
+
+        <a href="" class="Opt"><img src="img/back.png"></a> <a class="NowPlaying">Now Playing <%= allMusic[1].judul %></a> <a href="" class="Opt" style="margin-left:83%"><img src="img/next.png"></a>
         <div class="player">
         <audio id="audioPlayer001" style="max-width:80%; width: 80%; " >
-             <source src="media/test.mp3" type="audio/mpeg">
+             <source src="music-file/<%= allMusic[1].judul %>.mp3" type="audio/mpeg">
         </audio>
         </div>
 

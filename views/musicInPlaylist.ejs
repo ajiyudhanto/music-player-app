@@ -1,0 +1,69 @@
+<!-- <!DOCTYPE html>
+<html>
+    <title>Add Playlist - MusicApp</title>
+    <head>
+        <link rel="stylesheet" href="css/stylePlaylist.css">
+    </head>
+    <body>
+        <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Playlist Name</th>
+                        <th>Music List</th>
+                    </tr>
+                </thead>
+                <tBody>
+                    <% for(let i = 0; i < data.length; i++) { %>
+                        <tr>
+                            <td><%= data[i].name %></td>
+                            <td><a href="/playlists/music/<%= data[i].id %>">Show ME!</a></td>
+                        </tr>
+                    <% } %>
+                </tBody>
+            </table>
+            <br>
+            <a style="margin-left: 48%;" href="/playlists/create"><img  style="width: 40px; height: 40px; opacity: 80%;" src="img/buttonAdd.png"></a>
+        </div>
+    </body>
+</html>     -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            td, th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+
+            tr:nth-child(even) {
+                background-color: #dddddd;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Music in '<%= data.name %>' Playlist</h2>
+        <table>
+            <tr>
+                <th>Judul</th>
+                <th>Penyanyi</th>
+                <th>Pencipta</th>
+            </tr>
+            <% for(let i = 0; i < data.Music.length; i++) { %>
+                <tr>
+                    <td><%= data.Music[i].judul %></td>
+                    <td><%= data.Music[i].penyanyi %></td>
+                    <td><%= data.Music[i].pencipta %></td>
+                </tr>
+            <% } %>
+        </table>
+    </body>
+</html>

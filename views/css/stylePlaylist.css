@@ -1,0 +1,19 @@
+html { 
+    background: url("Bg.png") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+  .table {
+    margin-left:auto; 
+    margin-right:auto;
+    border-spacing: 350px 15px;
+    margin-top: 2%;
+    font-size: 20px;
+    color: white;
+    background-color: rgb(157, 107, 197);
+    opacity: 80%;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}

@@ -3,13 +3,28 @@ const { User, Playlist, Music } = require('../models')
 class PlaylistsController {
     static showMyPlaylists (req, res) {
         Playlist.findAll({
-            include: [Music]
-            // where: {
-            //     UserId: req.session.userId
-            // }
+            include: [Music],
+            where: {
+                UserId: req.session.userId
+            }
         })
         .then(data => {
-            res.send(data)
+            res.render('./playlist.ejs', {data})
+        })
+        .catch(err => {
+            res.send(err)
+        })
+    }
+
+    static showMusic (req, res) {
+        Playlist.findOne({
+            include: [Music],
+            where: {
+                id: Number(req.params.id)
+            }
+        })
+        .then(data => {
+            res.render('./musicInPlaylist.ejs', {data})
         })
         .catch(err => {
             res.send(err)
@@ -33,8 +48,7 @@ class PlaylistsController {
     static createForm (req, res) {
         Music.findAll()
         .then(data => {
-            res.send(data)
-            // res.render('./createPlaylistForm.ejs', {data})
+            res.render('./addPlaylist.ejs', {data})
         })
         .catch(err => {
             res.send(err)
@@ -46,10 +60,10 @@ class PlaylistsController {
             name: req.body.name,
             createdAt: new Date(),
             updatedAt: new Date(),
-            // UserId: req.session.userId
+            UserId: req.session.userId
         })
         .then(success => {
-            res.redirect(`/${req.params.userid}/playlists/list`)
+            res.redirect(`/playlists/list`)
         })
         .catch(err => {
             res.send(err)

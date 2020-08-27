@@ -2,7 +2,12 @@ const { User, Playlist, Music } = require('../models')
      
 class HomeController {
     static loginForm (req, res) {
-        res.render('./login.ejs')
+        if (req.session.userId) {
+            res.redirect('/home')
+        } else {
+            res.render('./login.ejs')
+        }
+        // res.render('./add.ejs')
     }
 
     static login (req, res) {
@@ -26,6 +31,7 @@ class HomeController {
     }
 
     static home (req, res) {
+        let userData = {}
         User.findOne({
             include: [Playlist],
             where: {
@@ -33,11 +39,41 @@ class HomeController {
             }
         })
         .then(data => {
-            res.render('./index.ejs', {data})
+            userData = data
+            return Music.findAll()
+        })
+        .then(allMusic => {
+            res.render('./index.ejs', {userData, allMusic})
         })
         .catch(err => {
             res.send(err)
         })
+    }
+
+    static registerForm (req, res) {
+        res.render('./register.ejs')
+    }
+
+    static register (req, res) {
+        User.create ({
+            name: req.body.name,
+            username: req.body.username,
+            email: req.body.email,
+            password: req.body.password,
+            createdAt: new Date(),
+            updatedAt: new Date()
+        })
+        .then (success => {
+            res.render('./login.ejs')
+        })
+        .catch (err => {
+            res.send(err)
+        })
+    }
+
+    static logout (req, res) {
+        delete req.session.userId
+        res.redirect('/')
     }
 }
 
