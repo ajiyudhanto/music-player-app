@@ -3,6 +3,7 @@ const router = express.Router()
 const PlaylistsController = require('../controllers/playlistsController')
 
 router.get('/list', PlaylistsController.showMyPlaylists)
+router.get('/play/:id', PlaylistsController.play)
 
 router.get('/create', PlaylistsController.createForm)
 router.post('/create', PlaylistsController.create)

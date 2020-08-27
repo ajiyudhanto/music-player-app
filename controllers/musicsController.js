@@ -12,6 +12,17 @@ class MusicsController {
             res.send(err)
         })
     }
+
+    static play (req, res) {
+        Music.findOne({
+            where: {
+                id: Number(req.params.id)
+            }
+        })
+        .then(data => {
+            res.send(data)
+        })
+    }
 }
 
 module.exports = MusicsController

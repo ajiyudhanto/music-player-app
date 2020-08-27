@@ -16,6 +16,20 @@ class PlaylistsController {
         })
     }
 
+    static play (req, res) {
+        Playlist.findOne({
+            where: {
+                id: Number(req.params.id)
+            }
+        })
+        .then(data => {
+            res.send(data)
+        })
+        .catch(err => {
+            res.send(err)
+        })
+    }
+
     static createForm (req, res) {
         Music.findAll()
         .then(data => {

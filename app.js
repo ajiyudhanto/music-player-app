@@ -9,6 +9,7 @@ const usersRouter = require('./routers/usersRouter')
 
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({extended:true}))
+app.use(express.static('views'))
 
 app.use(session({
     secret: 'music player app',
