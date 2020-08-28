@@ -1,4 +1,5 @@
-const { User, Playlist, Music } = require('../models')
+const { User, Playlist, Music, PlaylistMusic } = require('../models')
+const { Op } = require("sequelize");
 
 class PlaylistsController {
     static showMyPlaylists (req, res) {
@@ -17,14 +18,25 @@ class PlaylistsController {
     }
 
     static showMusic (req, res) {
+        let data = {}
         Playlist.findOne({
             include: [Music],
             where: {
                 id: Number(req.params.id)
             }
         })
-        .then(data => {
-            res.render('./musicInPlaylist.ejs', {data})
+        .then(data2 => {
+            data = data2
+            return Music.findAll({
+                // where: {
+                //    id: {
+                //     [Op.ne]: Number(req.params.id)
+                //    }      
+                // }
+            })
+        })
+        .then(list => {
+            res.render('./musicInPlaylist.ejs', {data, list})
         })
         .catch(err => {
             res.send(err)
@@ -70,15 +82,30 @@ class PlaylistsController {
         })
     }
 
+    static addMusic (req, res) {
+        PlaylistMusic.create({
+            PlaylistId : Number(req.params.playlistId),
+            MusicId : Number(req.params.musicId),
+            createdAt: new Date(),
+            updatedAt: new Date()
+        })
+        .then (success=> {
+            res.redirect (`/playlists/music/${req.params.playlistId}`)
+        })
+        .catch(err => {
+            res.send(err)
+        })
+    }
+
     static delete (req, res) {
-        Playlist.destroy({
+        PlaylistMusic.destroy({
             where: {
-                // UserId: req.session.userId,
-                // id: Number(req.params.id)
+                PlaylistId : Number(req.params.playlistId),
+                MusicId : Number(req.params.musicId)
             }
         })
         .then(success => {
-            res.send('sukses')
+            res.redirect (`/playlists/music/${req.params.playlistId}`)
         })
         .catch(err => {
             res.send(err)

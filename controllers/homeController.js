@@ -32,6 +32,7 @@ class HomeController {
 
     static home (req, res) {
         let userData = {}
+        let allMusic = []
         User.findOne({
             include: [Playlist],
             where: {
@@ -42,7 +43,8 @@ class HomeController {
             userData = data
             return Music.findAll()
         })
-        .then(allMusic => {
+        .then(data2 => {
+            allMusic = data2
             res.render('./index.ejs', {userData, allMusic})
         })
         .catch(err => {

@@ -9,11 +9,12 @@ html {
   .table {
     margin-left:auto; 
     margin-right:auto;
-    border-spacing: 350px 15px;
+    text-align: center;
     margin-top: 2%;
     font-size: 20px;
     color: white;
     background-color: rgb(157, 107, 197);
     opacity: 80%;
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    width: 100%;
 }
