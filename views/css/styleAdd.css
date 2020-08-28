@@ -1,0 +1,44 @@
+
+html { 
+    background: url("Bg.png") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+#myInput {
+    width: 50%;
+    font-size: 16px; 
+    padding: 12px 20px 12px 40px; 
+    margin-bottom: 12px;
+    margin-left: 25%;
+    opacity: 80%;
+    margin-top: 10%;
+ 
+  }
+  
+  #myUL {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  #myUL li a {
+ 
+    background-color: #EEEE; 
+    opacity: 80%;
+    padding: 12px; 
+    text-decoration: none;
+    font-size: 18px;
+    color: black; 
+    display: block; 
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  #myUL li a:hover:not(.header) {
+    color: white;
+    background-color: #9E9CFF; 
+  }

@@ -1,0 +1,15 @@
+html { 
+    background: url("Bg.png") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+body  {
+      width: 100%;
+      margin-left: auto;
+      text-align: center;
+      margin-top: 18%;
+      
+  }
